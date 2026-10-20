@@ -281,6 +281,9 @@ export default function HalamanUtama() {
               kota={kotaTerpilih.name}
               suhu={hasil.cuaca.saatIni.suhu}
               tingkatAQI={konversiTingkatAQI(hasil.kualitasUdara.indeksAQI)}
+              indeksAQI={hasil.kualitasUdara.indeksAQI}
+              pm10={hasil.kualitasUdara.pm10}
+              pm25={hasil.kualitasUdara.pm25}
             />
             <Text style={{ fontSize: 12, color: colors.textSecondary }}>
               Kondisi: {labelKodeCuaca(hasil.cuaca.saatIni.kodeCuaca)}{" "}

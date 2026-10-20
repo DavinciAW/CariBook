@@ -23,6 +23,8 @@ export default function WeatherCard({
   suhu,
   tingkatAQI,
   indeksAQI,
+  pm10,
+  pm25,
 }: WeatherCardProps) {
   const { colors, resolvedTheme } = useThemePreference();
   const teksAQI =
@@ -54,10 +56,23 @@ ${tingkatAQI}`
         style={{
           color: warnaPerTingkat[resolvedTheme][tingkatAQI],
           fontSize: typeScale.isi,
+          fontWeight: "600",
         }}
       >
         {teksAQI}
       </ThemedText>
+      {(pm10 !== undefined || pm25 !== undefined) && (
+        <ThemedText
+          style={{
+            color: colors.textSecondary,
+            fontSize: typeScale.keterangan,
+            marginTop: 2,
+          }}
+        >
+          PM10 {pm10 !== undefined ? `${pm10} µg/m³` : "-"} · PM2.5{" "}
+          {pm25 !== undefined ? `${pm25} µg/m³` : "-"}
+        </ThemedText>
+      )}
     </View>
   );
 }
