@@ -1,7 +1,7 @@
 // src/components/WeatherCard.tsx
 import { View } from "react-native";
 import { WeatherCardProps } from "../../types/cuaca";
-import { spacing, typeScale } from "../constants/styles";
+import { typeScale } from "../constants/styles";
 import { useThemePreference } from "../contexts/theme-context";
 import { ThemedText } from "./themed-text";
 const warnaPerTingkat = {
@@ -36,43 +36,101 @@ export default function WeatherCard({
       ? `Cuaca ${kota}, suhu ${suhu} derajat, indeks kualitas udara ${indeksAQI}, kategori
 ${tingkatAQI}`
       : `Cuaca ${kota}, suhu ${suhu} derajat, kualitas udara ${tingkatAQI}`;
+  const nilaiAQI = indeksAQI === undefined ? "--" : indeksAQI;
   return (
     <View
       accessible
       accessibilityLabel={labelAksesibilitas}
       style={{
-        padding: spacing.sedang,
-        borderRadius: 8,
+        padding: 18,
+        borderRadius: 14,
         backgroundColor: colors.backgroundElement,
         borderColor: colors.border,
         borderWidth: 1,
       }}
     >
-      <ThemedText style={{ fontWeight: "bold", fontSize: typeScale.judul }}>
-        {kota}
-      </ThemedText>
-      <ThemedText style={{ fontSize: 32 }}>{suhu}°C</ThemedText>
-      <ThemedText
+      <View
         style={{
-          color: warnaPerTingkat[resolvedTheme][tingkatAQI],
-          fontSize: typeScale.isi,
-          fontWeight: "600",
+          flexDirection: "row",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          gap: 12,
         }}
       >
-        {teksAQI}
-      </ThemedText>
-      {(pm10 !== undefined || pm25 !== undefined) && (
+        <View style={{ flex: 1, gap: 4 }}>
+          <ThemedText
+            style={{ color: colors.textSecondary, fontSize: typeScale.keterangan }}
+          >
+            KONDISI SAAT INI
+          </ThemedText>
+          <ThemedText
+            numberOfLines={2}
+            style={{ fontWeight: "700", fontSize: 21, lineHeight: 27 }}
+          >
+            {kota}
+          </ThemedText>
+        </View>
         <ThemedText
+          style={{ fontSize: 40, lineHeight: 46, fontWeight: "300" }}
+        >
+          {suhu}°
+        </ThemedText>
+      </View>
+
+      <View
+        style={{
+          height: 1,
+          backgroundColor: colors.border,
+          marginVertical: 16,
+        }}
+      />
+
+      <View style={{ flexDirection: "row", gap: 10 }}>
+        <View
           style={{
-            color: colors.textSecondary,
-            fontSize: typeScale.keterangan,
-            marginTop: 2,
+            flex: 1,
+            minHeight: 74,
+            justifyContent: "center",
+            paddingHorizontal: 12,
+            borderRadius: 10,
+            backgroundColor: colors.backgroundSelected,
           }}
         >
-          PM10 {pm10 !== undefined ? `${pm10} µg/m³` : "-"} · PM2.5{" "}
-          {pm25 !== undefined ? `${pm25} µg/m³` : "-"}
-        </ThemedText>
-      )}
+          <ThemedText style={{ color: colors.textSecondary, fontSize: 12 }}>
+            Kualitas udara
+          </ThemedText>
+          <ThemedText
+            style={{
+              color: warnaPerTingkat[resolvedTheme][tingkatAQI],
+              fontSize: 16,
+              fontWeight: "700",
+              marginTop: 3,
+            }}
+          >
+            AQI {nilaiAQI} · {tingkatAQI}
+          </ThemedText>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            minHeight: 74,
+            justifyContent: "center",
+            paddingHorizontal: 12,
+            borderRadius: 10,
+            backgroundColor: colors.background,
+          }}
+        >
+          <ThemedText style={{ color: colors.textSecondary, fontSize: 12 }}>
+            Partikulat
+          </ThemedText>
+          <ThemedText style={{ fontSize: 13, fontWeight: "600", marginTop: 3 }}>
+            PM10 {pm10 ?? "--"} · PM2.5 {pm25 ?? "--"}
+          </ThemedText>
+          <ThemedText style={{ color: colors.textSecondary, fontSize: 10 }}>
+            µg/m³
+          </ThemedText>
+        </View>
+      </View>
     </View>
   );
 }

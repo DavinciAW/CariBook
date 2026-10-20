@@ -1,6 +1,7 @@
 // src/app/(tabs)/pengaturan.tsx
 import { useState } from "react";
-import { Button, Pressable, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Pressable, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "../../components/themed-text";
 import { ThemeMode, useThemePreference } from "../../contexts/theme-context";
@@ -23,67 +24,152 @@ export default function TabPengaturan() {
     <SafeAreaView
       style={{
         flex: 1,
-        padding: 16,
-        gap: 12,
         backgroundColor: colors.background,
       }}
     >
-      <ThemedText style={{ fontSize: 18, fontWeight: "bold" }}>
-        Tampilan
-      </ThemedText>
-      <View
-        accessibilityRole="radiogroup"
-        style={{
-          flexDirection: "row",
-          padding: 4,
-          borderRadius: 10,
-          backgroundColor: colors.backgroundElement,
-          borderColor: colors.border,
-          borderWidth: 1,
-        }}
-      >
-        {PILIHAN_TEMA.map((pilihan) => {
-          const dipilih = mode === pilihan.mode;
-          return (
+      <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 28, gap: 22 }}>
+        <View style={{ gap: 4 }}>
+          <ThemedText style={{ color: colors.accent, fontSize: 12, fontWeight: "700" }}>
+            PREFERENSI
+          </ThemedText>
+          <ThemedText style={{ fontSize: 25, lineHeight: 31, fontWeight: "700" }}>
+            Pengaturan
+          </ThemedText>
+          <ThemedText style={{ color: colors.textSecondary, fontSize: 14 }}>
+            Sesuaikan tampilan dan data yang tersimpan.
+          </ThemedText>
+        </View>
+
+        <View style={{ gap: 9 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+            <Ionicons name="contrast-outline" size={18} color={colors.accent} />
+            <ThemedText style={{ fontSize: 15, fontWeight: "700" }}>
+              Mode tampilan
+            </ThemedText>
+          </View>
+          <View
+            accessibilityRole="radiogroup"
+            style={{
+              flexDirection: "row",
+              padding: 4,
+              borderRadius: 12,
+              backgroundColor: colors.backgroundElement,
+              borderColor: colors.border,
+              borderWidth: 1,
+            }}
+          >
+            {PILIHAN_TEMA.map((pilihan) => {
+              const dipilih = mode === pilihan.mode;
+              return (
+                <Pressable
+                  key={pilihan.mode}
+                  accessibilityRole="radio"
+                  accessibilityState={{ checked: dipilih }}
+                  onPress={() => setMode(pilihan.mode)}
+                  style={({ pressed }) => ({
+                    flex: 1,
+                    minHeight: 42,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 9,
+                    backgroundColor: dipilih ? colors.backgroundSelected : "transparent",
+                    opacity: pressed ? 0.72 : 1,
+                  })}
+                >
+                  <ThemedText
+                    style={{
+                      color: dipilih ? colors.accent : colors.textSecondary,
+                      fontWeight: dipilih ? "700" : "500",
+                      fontSize: 13,
+                    }}
+                  >
+                    {pilihan.label}
+                  </ThemedText>
+                </Pressable>
+              );
+            })}
+          </View>
+        </View>
+
+        <View style={{ gap: 9 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+            <Ionicons name="cloud-outline" size={18} color={colors.accent} />
+            <ThemedText style={{ fontSize: 15, fontWeight: "700" }}>
+              Penyimpanan
+            </ThemedText>
+          </View>
+          <View
+            style={{
+              padding: 15,
+              gap: 12,
+              borderRadius: 12,
+              borderWidth: 1,
+              borderColor: colors.border,
+              backgroundColor: colors.backgroundElement,
+            }}
+          >
+            <ThemedText style={{ color: colors.textSecondary, fontSize: 13, lineHeight: 19 }}>
+              Hapus data cuaca lokal untuk mengosongkan ruang di perangkat.
+            </ThemedText>
             <Pressable
-              key={pilihan.mode}
-              accessibilityRole="radio"
-              accessibilityState={{ checked: dipilih }}
-              onPress={() => setMode(pilihan.mode)}
-              style={{
-                flex: 1,
-                minHeight: 40,
+              accessibilityRole="button"
+              onPress={hapusDataTersimpan}
+              style={({ pressed }) => ({
+                minHeight: 44,
+                flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                borderRadius: 7,
-                backgroundColor: dipilih
-                  ? colors.backgroundSelected
-                  : "transparent",
-              }}
+                gap: 8,
+                borderRadius: 9,
+                borderWidth: 1,
+                borderColor: colors.border,
+                opacity: pressed ? 0.7 : 1,
+              })}
             >
-              <ThemedText
-                style={{
-                  color: dipilih ? colors.accent : colors.textSecondary,
-                  fontWeight: dipilih ? "700" : "500",
-                  fontSize: 13,
-                }}
-              >
-                {pilihan.label}
+              <Ionicons name="trash-outline" size={17} color={colors.danger} />
+              <ThemedText style={{ color: colors.danger, fontWeight: "600", fontSize: 13 }}>
+                Hapus data cuaca tersimpan
               </ThemedText>
             </Pressable>
-          );
-        })}
-      </View>
-      <ThemedText style={{ fontSize: 18, fontWeight: "bold", marginTop: 12 }}>
-        Jelajah Aman
-      </ThemedText>
-      <ThemedText>Versi 1.0.0</ThemedText>
-      <Button
-        title="Hapus Data Cuaca Tersimpan"
-        color={colors.accent}
-        onPress={hapusDataTersimpan}
-      />
-      {pesan && <ThemedText accessibilityLabel={pesan}>{pesan}</ThemedText>}
+            {pesan && (
+              <ThemedText
+                accessibilityLabel={pesan}
+                style={{ color: colors.accent, fontSize: 13 }}
+              >
+                {pesan}
+              </ThemedText>
+            )}
+          </View>
+        </View>
+
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 12,
+            paddingVertical: 4,
+          }}
+        >
+          <View
+            style={{
+              width: 42,
+              height: 42,
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 12,
+              backgroundColor: colors.backgroundSelected,
+            }}
+          >
+            <Ionicons name="compass-outline" size={22} color={colors.accent} />
+          </View>
+          <View style={{ gap: 2 }}>
+            <ThemedText style={{ fontWeight: "700" }}>Jelajah Aman</ThemedText>
+            <ThemedText style={{ color: colors.textSecondary, fontSize: 12 }}>
+              Versi 1.0.0
+            </ThemedText>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
