@@ -1,7 +1,7 @@
 // app/(tabs)/tentang.tsx
-import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText as Text } from "../../components/themed-text";
 import { spacing, typeScale } from "../../constants/styles";
 import { useThemePreference } from "../../contexts/theme-context";
@@ -17,7 +17,9 @@ export default function TabTentang() {
     >
       <View style={{ padding: spacing.sedang, gap: spacing.sedang }}>
         <View style={{ gap: 4 }}>
-          <Text style={{ color: colors.accent, fontSize: 12, fontWeight: "700" }}>
+          <Text
+            style={{ color: colors.accent, fontSize: 12, fontWeight: "700" }}
+          >
             APLIKASI
           </Text>
           <Text
@@ -52,9 +54,18 @@ export default function TabTentang() {
             <Ionicons name="compass-outline" size={30} color={colors.accent} />
           </View>
           <View style={{ gap: 5 }}>
-            <Text style={{ fontSize: 22, fontWeight: "700" }}>Jelajah Aman</Text>
-            <Text style={{ color: colors.textSecondary, fontSize: typeScale.isi, lineHeight: 21 }}>
-              Informasi cuaca dan kualitas udara untuk membantu Anda merencanakan perjalanan.
+            <Text style={{ fontSize: 22, fontWeight: "700" }}>
+              Jelajah Aman
+            </Text>
+            <Text
+              style={{
+                color: colors.textSecondary,
+                fontSize: typeScale.isi,
+                lineHeight: 21,
+              }}
+            >
+              Informasi cuaca dan kualitas udara untuk membantu Anda
+              merencanakan perjalanan.
             </Text>
           </View>
           <View
@@ -64,13 +75,32 @@ export default function TabTentang() {
               backgroundColor: colors.border,
             }}
           />
-          <View style={{ width: "100%", flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={{ color: colors.textSecondary, fontSize: 13 }}>Versi</Text>
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text style={{ color: colors.textSecondary, fontSize: 13 }}>
+              Versi
+            </Text>
             <Text style={{ fontSize: 13, fontWeight: "600" }}>1.0.0</Text>
           </View>
-          <View style={{ width: "100%", flexDirection: "row", justifyContent: "space-between", gap: 12 }}>
-            <Text style={{ color: colors.textSecondary, fontSize: 13 }}>Pembuat</Text>
-            <Text style={{ fontSize: 13, fontWeight: "600", textAlign: "right" }}>
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              gap: 12,
+            }}
+          >
+            <Text style={{ color: colors.textSecondary, fontSize: 13 }}>
+              Pembuat
+            </Text>
+            <Text
+              style={{ fontSize: 13, fontWeight: "600", textAlign: "right" }}
+            >
               Davin Aurellio W
             </Text>
           </View>

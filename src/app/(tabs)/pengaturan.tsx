@@ -1,6 +1,6 @@
 // src/app/(tabs)/pengaturan.tsx
-import { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "../../components/themed-text";
@@ -27,12 +27,18 @@ export default function TabPengaturan() {
         backgroundColor: colors.background,
       }}
     >
-      <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 28, gap: 22 }}>
+      <ScrollView
+        contentContainerStyle={{ padding: 18, paddingBottom: 28, gap: 22 }}
+      >
         <View style={{ gap: 4 }}>
-          <ThemedText style={{ color: colors.accent, fontSize: 12, fontWeight: "700" }}>
+          <ThemedText
+            style={{ color: colors.accent, fontSize: 12, fontWeight: "700" }}
+          >
             PREFERENSI
           </ThemedText>
-          <ThemedText style={{ fontSize: 25, lineHeight: 31, fontWeight: "700" }}>
+          <ThemedText
+            style={{ fontSize: 25, lineHeight: 31, fontWeight: "700" }}
+          >
             Pengaturan
           </ThemedText>
           <ThemedText style={{ color: colors.textSecondary, fontSize: 14 }}>
@@ -72,7 +78,9 @@ export default function TabPengaturan() {
                     alignItems: "center",
                     justifyContent: "center",
                     borderRadius: 9,
-                    backgroundColor: dipilih ? colors.backgroundSelected : "transparent",
+                    backgroundColor: dipilih
+                      ? colors.backgroundSelected
+                      : "transparent",
                     opacity: pressed ? 0.72 : 1,
                   })}
                 >
@@ -108,7 +116,13 @@ export default function TabPengaturan() {
               backgroundColor: colors.backgroundElement,
             }}
           >
-            <ThemedText style={{ color: colors.textSecondary, fontSize: 13, lineHeight: 19 }}>
+            <ThemedText
+              style={{
+                color: colors.textSecondary,
+                fontSize: 13,
+                lineHeight: 19,
+              }}
+            >
               Hapus data cuaca lokal untuk mengosongkan ruang di perangkat.
             </ThemedText>
             <Pressable
@@ -127,7 +141,13 @@ export default function TabPengaturan() {
               })}
             >
               <Ionicons name="trash-outline" size={17} color={colors.danger} />
-              <ThemedText style={{ color: colors.danger, fontWeight: "600", fontSize: 13 }}>
+              <ThemedText
+                style={{
+                  color: colors.danger,
+                  fontWeight: "600",
+                  fontSize: 13,
+                }}
+              >
                 Hapus data cuaca tersimpan
               </ThemedText>
             </Pressable>

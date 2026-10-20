@@ -192,7 +192,12 @@ export default function HalamanUtama() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 18, paddingBottom: 28, gap: 20 }}
+        contentContainerStyle={{
+          paddingHorizontal: 18,
+          paddingTop: 18,
+          paddingBottom: 28,
+          gap: 20,
+        }}
         keyboardShouldPersistTaps="handled"
       >
         <View style={{ gap: 4 }}>
@@ -230,7 +235,9 @@ export default function HalamanUtama() {
           })}
         >
           <Ionicons name="navigate-outline" size={17} color={colors.accent} />
-          <Text style={{ color: colors.accent, fontSize: 14, fontWeight: "600" }}>
+          <Text
+            style={{ color: colors.accent, fontSize: 14, fontWeight: "600" }}
+          >
             Gunakan Lokasi Saat Ini
           </Text>
         </Pressable>
@@ -265,7 +272,8 @@ export default function HalamanUtama() {
                   alignItems: "center",
                   gap: 10,
                   paddingHorizontal: 14,
-                  borderBottomWidth: index === hasilPencarian.length - 1 ? 0 : 1,
+                  borderBottomWidth:
+                    index === hasilPencarian.length - 1 ? 0 : 1,
                   borderBottomColor: colors.border,
                 }}
               >
@@ -294,8 +302,14 @@ export default function HalamanUtama() {
                 justifyContent: "space-between",
               }}
             >
-              <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-                <Ionicons name="cloud-offline-outline" size={18} color={colors.accent} />
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+              >
+                <Ionicons
+                  name="cloud-offline-outline"
+                  size={18}
+                  color={colors.accent}
+                />
                 <Text style={{ fontSize: 15, fontWeight: "700" }}>
                   Tersimpan offline
                 </Text>
@@ -314,52 +328,55 @@ export default function HalamanUtama() {
               }}
             >
               {kotaTersimpan.map((k, index) => (
-              <View
-                key={k.kunci}
-                style={{
-                  minHeight: 48,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  paddingLeft: 14,
-                  borderBottomWidth: index === kotaTersimpan.length - 1 ? 0 : 1,
-                  borderBottomColor: colors.border,
-                }}
-              >
-                <TouchableOpacity
-                  onPress={() =>
-                    pilihKota({
-                      id: k.id,
-                      name: k.nama,
-                      latitude: k.latitude,
-                      longitude: k.longitude,
-                      country: "",
-                    })
-                  }
-                  style={{ flex: 1, minHeight: 48, justifyContent: "center" }}
-                >
-                  <Text style={{ fontSize: 14, fontWeight: "500" }}>{k.nama}</Text>
-                </TouchableOpacity>
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityLabel={`Hapus cache ${k.nama}`}
-                  accessibilityHint="Meminta konfirmasi sebelum menghapus data offline kota ini"
-                  hitSlop={8}
-                  onPress={() => konfirmasiHapusCache(k)}
+                <View
+                  key={k.kunci}
                   style={{
-                    width: 44,
-                    height: 44,
+                    minHeight: 48,
+                    flexDirection: "row",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "space-between",
+                    paddingLeft: 14,
+                    borderBottomWidth:
+                      index === kotaTersimpan.length - 1 ? 0 : 1,
+                    borderBottomColor: colors.border,
                   }}
                 >
-                  <Ionicons
-                    name="trash-outline"
-                    size={16}
-                    color={colors.danger}
-                  />
-                </Pressable>
-              </View>
+                  <TouchableOpacity
+                    onPress={() =>
+                      pilihKota({
+                        id: k.id,
+                        name: k.nama,
+                        latitude: k.latitude,
+                        longitude: k.longitude,
+                        country: "",
+                      })
+                    }
+                    style={{ flex: 1, minHeight: 48, justifyContent: "center" }}
+                  >
+                    <Text style={{ fontSize: 14, fontWeight: "500" }}>
+                      {k.nama}
+                    </Text>
+                  </TouchableOpacity>
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel={`Hapus cache ${k.nama}`}
+                    accessibilityHint="Meminta konfirmasi sebelum menghapus data offline kota ini"
+                    hitSlop={8}
+                    onPress={() => konfirmasiHapusCache(k)}
+                    style={{
+                      width: 44,
+                      height: 44,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Ionicons
+                      name="trash-outline"
+                      size={16}
+                      color={colors.danger}
+                    />
+                  </Pressable>
+                </View>
               ))}
             </View>
           </View>
@@ -428,8 +445,18 @@ export default function HalamanUtama() {
                   opacity: pressed ? 0.72 : 1,
                 })}
               >
-                <Ionicons name="refresh-outline" size={17} color={colors.accent} />
-                <Text style={{ color: colors.accent, fontWeight: "600", fontSize: 13 }}>
+                <Ionicons
+                  name="refresh-outline"
+                  size={17}
+                  color={colors.accent}
+                />
+                <Text
+                  style={{
+                    color: colors.accent,
+                    fontWeight: "600",
+                    fontSize: 13,
+                  }}
+                >
                   Perbarui
                 </Text>
               </Pressable>
@@ -458,8 +485,18 @@ export default function HalamanUtama() {
                   opacity: pressed ? 0.8 : 1,
                 })}
               >
-                <Ionicons name="heart-outline" size={17} color={colors.backgroundElement} />
-                <Text style={{ color: colors.backgroundElement, fontWeight: "600", fontSize: 13 }}>
+                <Ionicons
+                  name="heart-outline"
+                  size={17}
+                  color={colors.backgroundElement}
+                />
+                <Text
+                  style={{
+                    color: colors.backgroundElement,
+                    fontWeight: "600",
+                    fontSize: 13,
+                  }}
+                >
                   Tambah favorit
                 </Text>
               </Pressable>

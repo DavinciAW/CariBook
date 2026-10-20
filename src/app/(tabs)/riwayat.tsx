@@ -1,11 +1,11 @@
 // src/app/(tabs)/riwayat.tsx
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import {
     Alert,
     Platform,
-  Pressable,
+    Pressable,
     ScrollView,
     TouchableOpacity,
     View,
@@ -64,9 +64,13 @@ export default function TabRiwayat() {
   }
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
-      <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 28, gap: 22 }}>
+      <ScrollView
+        contentContainerStyle={{ padding: 18, paddingBottom: 28, gap: 22 }}
+      >
         <View style={{ gap: 4 }}>
-          <Text style={{ color: colors.accent, fontSize: 12, fontWeight: "700" }}>
+          <Text
+            style={{ color: colors.accent, fontSize: 12, fontWeight: "700" }}
+          >
             KOLEKSI KOTA
           </Text>
           <Text style={{ fontSize: 25, lineHeight: 31, fontWeight: "700" }}>
@@ -83,7 +87,13 @@ export default function TabRiwayat() {
             <Text style={{ fontSize: 15, fontWeight: "700" }}>
               Pencarian terakhir
             </Text>
-            <Text style={{ color: colors.textSecondary, fontSize: 12, marginLeft: "auto" }}>
+            <Text
+              style={{
+                color: colors.textSecondary,
+                fontSize: 12,
+                marginLeft: "auto",
+              }}
+            >
               {riwayatPencarian.length}/10
             </Text>
           </View>
@@ -115,13 +125,22 @@ export default function TabRiwayat() {
                     alignItems: "center",
                     gap: 10,
                     paddingHorizontal: 14,
-                    borderBottomWidth: index === riwayatPencarian.length - 1 ? 0 : 1,
+                    borderBottomWidth:
+                      index === riwayatPencarian.length - 1 ? 0 : 1,
                     borderBottomColor: colors.border,
                   }}
                 >
-                  <Ionicons name="location-outline" size={17} color={colors.textSecondary} />
+                  <Ionicons
+                    name="location-outline"
+                    size={17}
+                    color={colors.textSecondary}
+                  />
                   <Text style={{ flex: 1, fontSize: 14 }}>{kota.name}</Text>
-                  <Ionicons name="arrow-forward-outline" size={16} color={colors.accent} />
+                  <Ionicons
+                    name="arrow-forward-outline"
+                    size={16}
+                    color={colors.accent}
+                  />
                 </TouchableOpacity>
               ))
             )}
@@ -131,8 +150,16 @@ export default function TabRiwayat() {
         <View style={{ gap: 9 }}>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
             <Ionicons name="heart-outline" size={18} color={colors.accent} />
-            <Text style={{ fontSize: 15, fontWeight: "700" }}>Kota favorit</Text>
-            <Text style={{ color: colors.textSecondary, fontSize: 12, marginLeft: "auto" }}>
+            <Text style={{ fontSize: 15, fontWeight: "700" }}>
+              Kota favorit
+            </Text>
+            <Text
+              style={{
+                color: colors.textSecondary,
+                fontSize: 12,
+                marginLeft: "auto",
+              }}
+            >
               {daftarFavorit.length} kota
             </Text>
           </View>
@@ -147,7 +174,9 @@ export default function TabRiwayat() {
           >
             {daftarFavorit.length === 0 ? (
               <View style={{ padding: 16, gap: 5 }}>
-                <Text style={{ fontWeight: "600" }}>Belum ada kota favorit</Text>
+                <Text style={{ fontWeight: "600" }}>
+                  Belum ada kota favorit
+                </Text>
                 <Text style={{ color: colors.textSecondary, fontSize: 13 }}>
                   Simpan kota dari Beranda untuk akses cepat.
                 </Text>
@@ -162,7 +191,8 @@ export default function TabRiwayat() {
                     alignItems: "center",
                     gap: 10,
                     paddingLeft: 14,
-                    borderBottomWidth: index === daftarFavorit.length - 1 ? 0 : 1,
+                    borderBottomWidth:
+                      index === daftarFavorit.length - 1 ? 0 : 1,
                     borderBottomColor: colors.border,
                   }}
                 >
@@ -173,9 +203,18 @@ export default function TabRiwayat() {
                     accessibilityLabel={`Hapus ${kota.nama} dari favorit`}
                     hitSlop={6}
                     onPress={() => konfirmasiHapus(kota)}
-                    style={{ width: 44, height: 44, alignItems: "center", justifyContent: "center" }}
+                    style={{
+                      width: 44,
+                      height: 44,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
                   >
-                    <Ionicons name="trash-outline" size={17} color={colors.danger} />
+                    <Ionicons
+                      name="trash-outline"
+                      size={17}
+                      color={colors.danger}
+                    />
                   </Pressable>
                 </View>
               ))

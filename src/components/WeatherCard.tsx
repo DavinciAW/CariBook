@@ -59,7 +59,10 @@ ${tingkatAQI}`
       >
         <View style={{ flex: 1, gap: 4 }}>
           <ThemedText
-            style={{ color: colors.textSecondary, fontSize: typeScale.keterangan }}
+            style={{
+              color: colors.textSecondary,
+              fontSize: typeScale.keterangan,
+            }}
           >
             KONDISI SAAT INI
           </ThemedText>
@@ -70,9 +73,7 @@ ${tingkatAQI}`
             {kota}
           </ThemedText>
         </View>
-        <ThemedText
-          style={{ fontSize: 40, lineHeight: 46, fontWeight: "300" }}
-        >
+        <ThemedText style={{ fontSize: 40, lineHeight: 46, fontWeight: "300" }}>
           {suhu}°
         </ThemedText>
       </View>

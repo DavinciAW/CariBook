@@ -1,7 +1,7 @@
 // src/components/SearchBox.tsx
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { TextInput, View } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useThemePreference } from "../contexts/theme-context";
 interface SearchBoxProps {
   onCari: (teks: string) => void;
