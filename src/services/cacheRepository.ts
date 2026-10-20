@@ -1,11 +1,11 @@
 // src/services/cacheRepository.ts
-import { ambilDatabase } from "../db/database";
-import { DataCuacaLengkap, DataKualitasUdara } from "../../types/weather";
 import {
-  DataTersimpan,
-  KotaUntukCache,
-  RingkasanKotaTersimpan,
+    DataTersimpan,
+    KotaUntukCache,
+    RingkasanKotaTersimpan,
 } from "../../types/cache";
+import { DataCuacaLengkap, DataKualitasUdara } from "../../types/weather";
+import { ambilDatabase } from "../db/database";
 interface BarisCache {
   kunci: string;
   kota_id: number;
@@ -74,6 +74,10 @@ FROM cache_cuaca ORDER BY disimpan_pada DESC LIMIT 5`,
     longitude: b.longitude,
     disimpanPada: b.disimpan_pada,
   }));
+}
+export async function hapusCache(kunci: string): Promise<void> {
+  const db = await ambilDatabase();
+  await db.runAsync("DELETE FROM cache_cuaca WHERE kunci = ?", [kunci]);
 }
 // Invalidation otomatis: buang cache yang lebih tua dari batas umur
 export async function bersihkanCacheLama(batasUmurMs: number): Promise<void> {

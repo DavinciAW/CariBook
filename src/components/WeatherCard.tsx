@@ -1,12 +1,22 @@
 // src/components/WeatherCard.tsx
-import { View, Text } from "react-native";
-import { WeatherCardProps, TingkatAQI } from "../../types/cuaca";
-import { typeScale, spacing } from "../constants/styles";
-const warnaPerTingkat: Record<TingkatAQI, string> = {
-  BAIK: "green",
-  SEDANG: "goldenrod",
-  TIDAK_SEHAT: "orange",
-  BERBAHAYA: "crimson",
+import { View } from "react-native";
+import { WeatherCardProps } from "../../types/cuaca";
+import { spacing, typeScale } from "../constants/styles";
+import { useThemePreference } from "../contexts/theme-context";
+import { ThemedText } from "./themed-text";
+const warnaPerTingkat = {
+  light: {
+    BAIK: "#167A50",
+    SEDANG: "#8A6200",
+    TIDAK_SEHAT: "#C2410C",
+    BERBAHAYA: "#B42318",
+  },
+  dark: {
+    BAIK: "#70D6A6",
+    SEDANG: "#FFD166",
+    TIDAK_SEHAT: "#FF9F6E",
+    BERBAHAYA: "#FF8A80",
+  },
 };
 export default function WeatherCard({
   kota,
@@ -14,6 +24,7 @@ export default function WeatherCard({
   tingkatAQI,
   indeksAQI,
 }: WeatherCardProps) {
+  const { colors, resolvedTheme } = useThemePreference();
   const teksAQI =
     indeksAQI !== undefined
       ? `AQI: ${indeksAQI} (${tingkatAQI})`
@@ -30,18 +41,23 @@ ${tingkatAQI}`
       style={{
         padding: spacing.sedang,
         borderRadius: 8,
-        backgroundColor: "#F4F7FA",
+        backgroundColor: colors.backgroundElement,
+        borderColor: colors.border,
+        borderWidth: 1,
       }}
     >
-      <Text style={{ fontWeight: "bold", fontSize: typeScale.judul }}>
+      <ThemedText style={{ fontWeight: "bold", fontSize: typeScale.judul }}>
         {kota}
-      </Text>
-      <Text style={{ fontSize: 32 }}>{suhu}°C</Text>
-      <Text
-        style={{ color: warnaPerTingkat[tingkatAQI], fontSize: typeScale.isi }}
+      </ThemedText>
+      <ThemedText style={{ fontSize: 32 }}>{suhu}°C</ThemedText>
+      <ThemedText
+        style={{
+          color: warnaPerTingkat[resolvedTheme][tingkatAQI],
+          fontSize: typeScale.isi,
+        }}
       >
         {teksAQI}
-      </Text>
+      </ThemedText>
     </View>
   );
 }

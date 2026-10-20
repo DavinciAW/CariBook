@@ -1,12 +1,19 @@
 // app/(tabs)/tentang.tsx
-import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ThemedText as Text } from "../../components/themed-text";
 import { spacing, typeScale } from "../../constants/styles";
+import { useThemePreference } from "../../contexts/theme-context";
 
 export default function TabTentang() {
+  const { colors } = useThemePreference();
   return (
     <SafeAreaView
-      style={{ flex: 1, padding: spacing.sedang, gap: spacing.kecil }}
+      style={{
+        flex: 1,
+        padding: spacing.sedang,
+        gap: spacing.kecil,
+        backgroundColor: colors.background,
+      }}
     >
       <Text
         accessibilityLabel="Judul halaman Tentang Aplikasi"

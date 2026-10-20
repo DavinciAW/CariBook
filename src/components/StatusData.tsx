@@ -1,6 +1,8 @@
 // src/components/StatusData.tsx
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { SumberData } from "../../types/cache";
+import { useThemePreference } from "../contexts/theme-context";
+import { ThemedText } from "./themed-text";
 interface StatusDataProps {
   sumber: SumberData;
   disimpanPada: number;
@@ -19,6 +21,7 @@ function labelSumber(sumber: SumberData): string {
   return "Mode offline - data tersimpan mungkin sudah usang";
 }
 export default function StatusData({ sumber, disimpanPada }: StatusDataProps) {
+  const { colors, resolvedTheme } = useThemePreference();
   const basi = sumber === "cache-basi";
   const label = labelSumber(sumber);
   const umur = formatUmur(disimpanPada);
@@ -29,13 +32,31 @@ export default function StatusData({ sumber, disimpanPada }: StatusDataProps) {
       style={{
         padding: 8,
         borderRadius: 8,
-        backgroundColor: basi ? "#FEF3E2" : "#EAFBF6",
+        backgroundColor:
+          resolvedTheme === "dark"
+            ? basi
+              ? "#3A2B20"
+              : "#18332F"
+            : basi
+              ? "#FEF3E2"
+              : "#EAFBF6",
       }}
     >
-      <Text style={{ fontSize: 12, color: basi ? "#B45309" : "#13795F" }}>
+      <ThemedText
+        style={{
+          fontSize: 12,
+          color: basi
+            ? resolvedTheme === "dark"
+              ? "#FFC078"
+              : "#B45309"
+            : colors.accent,
+        }}
+      >
         {label}
-      </Text>
-      <Text style={{ fontSize: 11, color: "#666666" }}>Diperbarui {umur}</Text>
+      </ThemedText>
+      <ThemedText style={{ fontSize: 11, color: colors.textSecondary }}>
+        Diperbarui {umur}
+      </ThemedText>
     </View>
   );
 }
