@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "orientasi-jelajah-aman",
-    "slug": "orientasi-jelajah-aman",
+    "name": "CariBook",
+    "slug": "caribook",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "orientasijelajahaman",
+    "scheme": "caribook",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
@@ -36,7 +36,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Jelajah Aman menggunakan lokasi Anda untuk menampilkan cuaca di kota terdekat."
+          "locationWhenInUsePermission": "Aplikasi menggunakan lokasi Anda untuk menampilkan cuaca di kota terdekat."
         }
       ],
       [

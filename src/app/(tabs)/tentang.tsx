@@ -54,9 +54,7 @@ export default function TabTentang() {
             <Ionicons name="compass-outline" size={30} color={colors.accent} />
           </View>
           <View style={{ gap: 5 }}>
-            <Text style={{ fontSize: 22, fontWeight: "700" }}>
-              Jelajah Aman
-            </Text>
+            <Text style={{ fontSize: 22, fontWeight: "700" }}>CariBook</Text>
             <Text
               style={{
                 color: colors.textSecondary,

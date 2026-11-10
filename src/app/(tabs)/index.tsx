@@ -3,13 +3,13 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    Platform,
-    Pressable,
-    ScrollView,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  Platform,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HasilGeocoding } from "../../../types/geocoding";
@@ -22,24 +22,24 @@ import { labelKodeCuaca } from "../../constants/weatherCodes";
 import { useThemePreference } from "../../contexts/theme-context";
 import { useDebounce } from "../../hooks/use-debounce";
 import {
-    bersihkanCacheLama,
-    daftarKotaTersimpan,
-    hapusCache,
+  bersihkanCacheLama,
+  daftarKotaTersimpan,
+  hapusCache,
 } from "../../services/cacheRepository";
 import {
-    ambilCuacaOfflineFirst,
-    BATAS_CACHE_MS,
+  ambilCuacaOfflineFirst,
+  BATAS_CACHE_MS,
 } from "../../services/cuacaRepository";
 import { cariKota } from "../../services/geocodingService";
 import {
-    ambilKoordinatSaatIni,
-    mintaIzinLokasi,
+  ambilKoordinatSaatIni,
+  mintaIzinLokasi,
 } from "../../services/locationService";
 import { simpanRiwayatPencarian } from "../../services/riwayatPencarianStorage";
 import { konversiTingkatAQI } from "../../services/weatherAdapter";
 import {
-    HasilCuacaOffline,
-    RingkasanKotaTersimpan,
+  HasilCuacaOffline,
+  RingkasanKotaTersimpan,
 } from "..//../../types/cache";
 export default function HalamanUtama() {
   const { colors } = useThemePreference();
@@ -208,7 +208,7 @@ export default function HalamanUtama() {
               fontWeight: "700",
             }}
           >
-            JELAJAH AMAN
+            CARIBOOK
           </Text>
           <Text style={{ fontSize: 26, lineHeight: 32, fontWeight: "700" }}>
             Cuaca dan udara

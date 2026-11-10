@@ -183,7 +183,7 @@ export default function TabPengaturan() {
             <Ionicons name="compass-outline" size={22} color={colors.accent} />
           </View>
           <View style={{ gap: 2 }}>
-            <ThemedText style={{ fontWeight: "700" }}>Jelajah Aman</ThemedText>
+            <ThemedText style={{ fontWeight: "700" }}>CariBook</ThemedText>
             <ThemedText style={{ color: colors.textSecondary, fontSize: 12 }}>
               Versi 1.0.0
             </ThemedText>
