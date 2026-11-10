@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BukuOpenLibrary } from "../../../types/buku";
+import BookCard from "../../components/BookCard";
 import { ThemedText as Text } from "../../components/themed-text";
 import { useThemePreference } from "../../contexts/theme-context";
 import { cariBuku } from "../../services/openLibraryService";
@@ -174,19 +175,12 @@ export default function HalamanUtama() {
                 <View
                   key={buku.key || `${buku.title}-${index}`}
                   style={{
-                    gap: 5,
-                    paddingHorizontal: 14,
-                    paddingVertical: 13,
+                    minHeight: 134,
                     borderBottomWidth: index === hasil.length - 1 ? 0 : 1,
                     borderBottomColor: colors.border,
                   }}
                 >
-                  <Text style={{ fontSize: 15, fontWeight: "600" }}>
-                    {buku.title}
-                  </Text>
-                  <Text style={{ color: colors.textSecondary, fontSize: 13 }}>
-                    {buku.author_name?.join(", ") || "Penulis tidak diketahui"}
-                  </Text>
+                  <BookCard book={buku} />
                 </View>
               ))}
             </View>
